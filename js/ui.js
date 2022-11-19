@@ -7,66 +7,67 @@ console.log("UI JS Loaded!");
 class UI {
 
     constructor() {
-        this.movies = document.querySelector('#movies>.post-container');
-        this.series = document.querySelector('#main-slider>.swiper>.series__list');
-        this.search = document.querySelector('.search__input');
-        this.movieInfo = document.querySelector('.movie__details');
+        this.carousel = document.querySelector('.carousel');
+        this.series = document.querySelector('.series');
+        this.search = document.querySelector('.search');
+        this.movieInfo = document.querySelector('.movieInfo');
     }
 
     showMovies(data) {
         let movieOutput = '';
 
         data.forEach((movie) => {
-            `
-            <div class="post-box">
-                <!--img-->
-                <div class="post-img">
-                    <img alt="" src="${movie.Poster}"/>
-                </div>
-                <!--text---------->
-                <div class="main-slider-text">
+            movieOutput += `
+              <div class="carousel-item" id="one">
+                    <div class="card medium black ">
 
-                    <!--quality----->
-                    <span class="quality">Full HD</span>
-
-                    <!--bottom-text-->
-                    <div class="bottom-text">
-                        <!--name----->
-                        <div class="movie-name">
-                            <span>
-                                ${movie.Year}
-                            </span>
-                            <a href="movie-page.html" title="Movie Details" onclick="movieClicked('${movie.imdbID}')"> 
-                                ${movie.Title}
-                            </a>
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img src="${movie.Poster}" alt="" class="activator">
                         </div>
 
-                        <!--Category-and-rating---->
-                        <div class="category-rating">
+                        <div class="card-content black">
+                            <span class="card-title activator text-white text-darken-4">
+                              ${movie.Title}
+                            </span><i class="material-icons right">more</i>
+                        </div>
 
-                            <!--category-->
-                            <div class="category">
-                                <a>${movie.Type}</a> 
-                            </div>
+                        <div class="card-reveal black">
+                            <span class="card-title   text-white  text-darken-4"><i class="material-icons right">close</i>
+                              
+                            </span>
+                            
 
-                            <!--rating---> 
-                            9.9
+                            <p class="green-text">
+                                Type: <span class="text-yellow">
+                                    ${movie.Type}
+                                </span>
+                            </p>
+                            
+
+                            <p class="green-text">
+                                Year: <span class="text-yellow">
+                                    ${movie.Year}
+                                </span>
+                            </p>
+
+                            <a href="#" class="waves-effect green btn-small" onclick="movieClicked('${movie.imdbID}')">More Info</a>
                         </div>
                     </div>
-                </div>
-            </div> 
-            `
+                </div> 
+             `;
+
+
         }
 
         );
 
 
-        this.movies.innerHTML = movieOutput;
+        this.carousel.innerHTML = movieOutput;
 
 
         // init carousel
-        // const elements = this.carousel;
-        // M.Carousel.init(elements);
+        const elements = this.carousel;
+        M.Carousel.init(elements);
 
     }
 
@@ -74,48 +75,45 @@ class UI {
     showSeries(data) {
         let seriesOutput = '';
 
-        data.forEach((series, i) => {
-            seriesOutput +=`
-                <!--------------------- series ${i+1} ----------------->
-                <div class="swiper-slide series">
-                    <!--box------------------->
-                    <div class="main-slider-box">
-                        <!--overlayer-------->
-                        <a href="#" class="main-slider-overlay">
-                            <i class="fas fa-play"></i>
-                        </a>
-                        <!--img----------->
-                        <div class="main-slider-img">
-                            <img alt="Poster" src="${series.Poster}"/>
+        data.forEach((series) => {
+            seriesOutput += `
+                <div class="col s3 ">
+                    <div class="card medium black ">
+
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img src="${series.Poster}" alt="" class="activator">
                         </div>
-                        <!--text---------->
-                        <div class="main-slider-text">
-                            <!--quality----->
-                            <span class="quality">Full HD</span>
-                            <!--bottom-text-->
-                            <div class="bottom-text">
-                                <!--name----->
-                                <div class="movie-name">
-                                    <span>${series.Year}</span>
-                                    <a href="#"  onclick="movieClicked('${movie.imdbID}')>
-                                        ${series.Title}
-                                    </a>
-                                </div>
-                                <!--Category-and-rating---->
-                                <div class="category-rating">
-                                    <!--category-->
-                                    <div class="category">
-                                        <a>${series.Type}</a> 
-                                    </div>
-                                    <!--rating--->
-                                    
-                                </div>
-                            </div>
+
+                        <div class="card-content black">
+                            <span class="card-title activator text-white text-darken-4">
+                                ${series.Title}
+                            </span><i class="material-icons right">more</i>
+                        </div>
+
+                        <div class="card-reveal black">
+                            <span class="card-title   text-white  text-darken-4"><i class="material-icons right">close</i>
+                                
+                            </span>
+                            
+
+                            <p class="green-text">
+                                Type: <span class="text-yellow">
+                                    ${series.Type}
+                                </span>
+                            </p>
+                            
+
+                            <p class="green-text">
+                                Year: <span class="text-yellow">
+                                    ${series.Year}
+                                </span>
+                            </p>
+
+                            <a href="#" class="waves-effect green btn-small" onclick="movieClicked('${movie.imdbID}')">More Info</a>
                         </div>
                     </div>
                 </div>
-            
-            `  
+            `;
         });
 
         this.series.innerHTML = seriesOutput;
@@ -169,4 +167,51 @@ class UI {
     }
 
 
+    
+    showSearch(data) {
+        let searchOutput = '';
+
+        data.forEach((series) => {
+            searchOutput += `
+                <div class="col s3 ">
+                    <div class="card medium black ">
+
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img src="${series.Poster}" alt="" class="activator">
+                        </div>
+
+                        <div class="card-content black">
+                            <span class="card-title activator text-white text-darken-4">
+                                ${series.Title}
+                            </span><i class="material-icons right">more</i>
+                        </div>
+
+                        <div class="card-reveal black">
+                            <span class="card-title   text-white  text-darken-4"><i class="material-icons right">close</i>
+                                
+                            </span>
+                            
+
+                            <p class="green-text">
+                                Type: <span class="text-yellow">
+                                    ${series.Type}
+                                </span>
+                            </p>
+                            
+
+                            <p class="green-text">
+                                Year: <span class="text-yellow">
+                                    ${series.Year}
+                                </span>
+                            </p>
+
+                            <a href="#" class="waves-effect green btn-small" onclick="movieClicked('${movie.imdbID}')">More Info</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        this.search.innerHTML = searchOutput;
+    }
 }

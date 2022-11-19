@@ -8,7 +8,6 @@
         <title >
             Movienymous | Your Movie Encyclopedia 
         </title>
-        
 
         <!--Stylesheet(CSS)==========================-->
         <link rel="stylesheet" href="css/style.css"/>
@@ -43,16 +42,6 @@
 
         <!--=================bootstrap-CSS=============-->
         <link rel="stylesheet" href="css/bootstrap.min.css"/> 
-
-
-        <!------------  START JS imports --------------------->
-        <script defer  src="js/swiper-bundle.min.js"></script> 
-        <script defer  src="js/jQuery.js"></script> 
-        <script defer  src="js/bootstrap.min.js"></script> 
-        <script defer  src="js/api.js"></script>
-        <script defer  src="js/ui.js"></script>
-        <script defer  src="js/script.js"></script>
-        <!------------  END JS imports --------------------->
 
     </head>
 
@@ -119,7 +108,7 @@
                     type="text" 
                     name="search-movie" 
                     placeholder="Search Movie..." 
-                    class="search__input"   
+                    class="search-input"   
                     list="search__suggestions"   
                     required/>
 
@@ -133,7 +122,8 @@
             <datalist id="search__suggestions" >
                 <option value="Deadpool 2"></option> 
                 <option value="No Time to Die"></option> 
-            </datalist> 
+            </datalist>
+
         </nav>
         <!------------------- END Navigation ------------------------->
 
@@ -396,12 +386,13 @@
 
 
         <!---------------------- START  Latest-Movies  ---------------------->
-        <!--heading-------->
-        <div class="latest-heading">
-            <h1 class="movie__section--title">Trending Movies...</h1>
-        </div>
+        <section id="latest">
+            <!--heading-------->
+            <div class="latest-heading">
+                <h1 class="movie__section--title">Trending Movies...</h1>
+            </div>
 
-        <section id="movies"> 
+
             <!--container------->
             <div class="post-container">
 
@@ -807,7 +798,14 @@
         
 
         
-        
+        <!------------  START JS imports --------------------->
+        <script src="js/swiper-bundle.min.js"></script> 
+        <script src="js/jQuery.js"></script> 
+        <script src="js/bootstrap.min.js"></script> 
+        <script src="js/api.js"></script>
+        <script src="js/ui.js"></script>
+        <script src="js/script.js"></script>
+        <!------------  END JS imports --------------------->
 
         <script> 
             /*==scroll-progress-bar======================*/

@@ -1,2 +1,3 @@
-# Movienymous 
-## A movie and series  encyclopedia
+# Movienymous
+## A movie & series encyclopedia
+### DEMO: https://cjndev-movienymous.netlify.app/

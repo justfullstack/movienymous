@@ -1,4 +1,2 @@
-#Movie-Data/*
-#img/
-.*
-!.gitignore
+Movie-Data/*
+img/

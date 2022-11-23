@@ -8,8 +8,10 @@ class UI {
 
     constructor() {
         this.carousel = document.querySelector('.carousel');
-        this.series = document.querySelector('.series');
-        this.search = document.querySelector('.search');
+        this.series = document.querySelector('.series__list');
+
+        this.movies = document.querySelector('.movie__list');
+        // this.search = document.querySelector('.search');
         this.movieInfo = document.querySelector('.movieInfo');
     }
 
@@ -18,58 +20,53 @@ class UI {
 
         data.forEach((movie) => {
             movieOutput += `
-              <div class="carousel-item" id="one">
-                    <div class="card medium black ">
+            <div class="post-box">
+                <!--img-->
+                <div class="post-img">
+                    <img alt="" src="${movie.Poster}"/>
+                </div>
+                <!--text---------->
+                <div class="main-slider-text">
 
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img src="${movie.Poster}" alt="" class="activator">
+                    <!--quality----->
+                    <span class="quality">Full HD</span>
+
+                    <!--bottom-text-->
+                    <div class="bottom-text">
+                        <!--name----->
+                        <div class="movie-name">
+                            <span>2021</span>
+                            <a href="movie.html"  onclick="movieClicked('${movie.imdbID}')>
+                                ${movie.Title}
+                            </a>
                         </div>
 
-                        <div class="card-content black">
-                            <span class="card-title activator text-white text-darken-4">
-                              ${movie.Title}
-                            </span><i class="material-icons right">more</i>
-                        </div>
+                        <!--Category-and-rating---->
+                        <div class="category-rating">
 
-                        <div class="card-reveal black">
-                            <span class="card-title   text-white  text-darken-4"><i class="material-icons right">close</i>
-                              
-                            </span>
-                            
+                            <!--category-->
+                            <div class="category">
+                                <a href="movie.html">${movie.Type}</a> 
+                            </div>
 
-                            <p class="green-text">
-                                Type: <span class="text-yellow">
-                                    ${movie.Type}
-                                </span>
-                            </p>
-                            
-
-                            <p class="green-text">
-                                Year: <span class="text-yellow">
-                                    ${movie.Year}
-                                </span>
-                            </p>
-
-                            <a href="#" class="waves-effect green btn-small" onclick="movieClicked('${movie.imdbID}')">More Info</a>
+                            <!--rating---> 
+                            ${movie.imdbRating}
                         </div>
                     </div>
-                </div> 
+                </div>
+            </div> 
              `;
-
-
         }
 
         );
 
 
-        this.carousel.innerHTML = movieOutput;
-
-
-        // init carousel
-        const elements = this.carousel;
-        M.Carousel.init(elements);
+        this.movies.innerHTML = movieOutput; 
 
     }
+
+
+    
 
 
     showSeries(data) {
@@ -77,45 +74,47 @@ class UI {
 
         data.forEach((series) => {
             seriesOutput += `
-                <div class="col s3 ">
-                    <div class="card medium black ">
-
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img src="${series.Poster}" alt="" class="activator">
+                <div class="swiper-slide series">
+                    <!--box------------------->
+                    <div class="main-slider-box">
+                        <!--overlayer-------->
+                        <a href="movie.html" class="main-slider-overlay movieInfoButton" onclick="movieClicked('${movie.imdbID}')">
+                            <i class="fas fa-play"></i>
+                        </a>
+                        <!--img----------->
+                        <div class="main-slider-img"> 
+                            <img src="${series.Poster}" alt="Poster" class="activator">
                         </div>
-
-                        <div class="card-content black">
-                            <span class="card-title activator text-white text-darken-4">
-                                ${series.Title}
-                            </span><i class="material-icons right">more</i>
-                        </div>
-
-                        <div class="card-reveal black">
-                            <span class="card-title   text-white  text-darken-4"><i class="material-icons right">close</i>
-                                
-                            </span>
-                            
-
-                            <p class="green-text">
-                                Type: <span class="text-yellow">
-                                    ${series.Type}
-                                </span>
-                            </p>
-                            
-
-                            <p class="green-text">
-                                Year: <span class="text-yellow">
-                                    ${series.Year}
-                                </span>
-                            </p>
-
-                            <a href="#" class="waves-effect green btn-small" onclick="movieClicked('${movie.imdbID}')">More Info</a>
+                        <!--text---------->
+                        <div class="main-slider-text">
+                            <!--quality----->
+                            <span class="quality">Full HD</span>
+                            <!--bottom-text-->
+                            <div class="bottom-text">
+                                <!--name----->
+                                <div class="movie-name">
+                                    <span>${series.Year}</span>
+                                    <a href="#">${series.Title}</strong>
+                                </div>
+                                <!--Category-and-rating---->
+                                <div class="category-rating">
+                                    <!--category-->
+                                    <div class="category">
+                                        <a href="#">${series.Type}</a> 
+                                    </div>
+                                    <!--rating--->
+                                    <div class="rating">
+                                        ${series.imdbRating} 
+                                    </div> 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            `;
+                    `;
         });
 
+        this.series.innerHTML = '';
         this.series.innerHTML = seriesOutput;
     }
 
@@ -126,92 +125,110 @@ class UI {
 
         output += `
             
-            <h2 class="header"> ${info.Title} </h2>
-                <div class="card horizontal">
-                    <div class="card-image">
-                        <img src="${info.Poster}" alt="">
+        <section class="movie-banner movie-info">
+            <!--==img==================================-->
+            <div class="m-banner-img">
+                <img alt="" src="${info.Poster}">
+            </div>
+            <!--content================================-->
+            <div class="banner-container">
+                <!--title-container*******************----->
+                <div class="title-container">
+                    <!--title-top===============-->
+                    <div class="title-top">
+                    <!--title----->
+                    <div class="movie-title">
+                        <h1>Pirates of the Caribbean Salazar's Revenge</h1>
+                        By <em>${info.Actor}</em>
                     </div>
-                    <div class="card-stacked">
-                        <div class="card-content">
-                           <ul class="collection with-header">
-                                <li class="collection-header">
-                                    <h4>${info.Title}</h4>
-                                </li>
-                                <li class="collection-item">
-                                    <strong class="flow-text">Actor: ${info.Actor}</strong>
-                                </li>
-                                <li class="collection-item">
-                                    <strong class="flow-text">Awards: ${info.Awards}</strong >
-                                </li >
-                                <li class="collection-item">
-                                    <strong class="flow-text">Genre: ${info.Genre}</strong>
-                                </li>
-                                <li class="collection-item">
-                                    <strong class="flow-text">Released: ${info.Released}</strong>
-                                </li>
-                                <li class="collection-item">
-                                    <strong class="flow-text">Rated: ${info.imdbRating}</strong>
-                                </li>
-                                
-                            </ul >
+                    <!--more-about-movie-->
+                    <div class="more-about-movie">
+                        <span class="quality">Full HD</span>
+                        <div class="rating">
+                            ${info.imdbRating} <img alt="imbd" src="img/IMDb-icon.png">
                         </div>
-
-                        <div class="card-action">
-                            <a href="https://www.imdb.com/title/${info.imdbID}"target="_blank" > Watch on IMDB </a>
-                             <a href="index.html"  > <<<Back Home </a>
+                        <span>${info.Released}</span>
+                        <span>${info.Awards}</span>
+                    </div>
+                    <!--language--------->
+                    <div class="language">
+                        <span>English</span>
+                    </div>
+                    </div>
+                    <!--Title-botttom==========================-->
+                    <div class="title-bottom">
+                        <!--category------->
+                        <div class="category">
+                            <strong>Category</strong><br/>
+                            <a href="#">${info.Genre}</a>
                         </div>
+                        <!--trailer-btn---->
+                        <a href="https://www.imdb.com/title/${info.imdbID}" target='_blank' class='watch-btn'>
+                            Watch Trailer
+                            <i class="fas fa-play fa-fw mx-2"></i>
+                        </a>
                     </div>
                 </div>
+                // <!--play-btn******************************--->
+                // <div class="play-btn-container">
+                //     <div class="play-btn">
+                //         <a href="javascript:void">
+                //             <i class="fas fa-play"></i>
+                //         </a>
+                //     </div>
+                // </div> 
+            </div>
+        </section>
         `
 
     }
 
 
     
-    showSearch(data) {
-        let searchOutput = '';
+    // showSearch(data) {
+    //     let searchOutput = '';
 
-        data.forEach((series) => {
-            searchOutput += `
-                <div class="col s3 ">
-                    <div class="card medium black ">
+    //     data.forEach((series) => {
+    //         searchOutput += `
+    //             <div class="col s3 ">
+    //                 <div class="card medium black ">
 
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img src="${series.Poster}" alt="" class="activator">
-                        </div>
+    //                     <div class="card-image waves-effect waves-block waves-light">
+    //                         <img src="${series.Poster}" alt="" class="activator">
+    //                     </div>
 
-                        <div class="card-content black">
-                            <span class="card-title activator text-white text-darken-4">
-                                ${series.Title}
-                            </span><i class="material-icons right">more</i>
-                        </div>
+    //                     <div class="card-content black">
+    //                         <span class="card-title activator text-white text-darken-4">
+    //                             ${series.Title}
+    //                         </span><i class="material-icons right">more</i>
+    //                     </div>
 
-                        <div class="card-reveal black">
-                            <span class="card-title   text-white  text-darken-4"><i class="material-icons right">close</i>
+    //                     <div class="card-reveal black">
+    //                         <span class="card-title   text-white  text-darken-4"><i class="material-icons right">close</i>
                                 
-                            </span>
+    //                         </span>
                             
 
-                            <p class="green-text">
-                                Type: <span class="text-yellow">
-                                    ${series.Type}
-                                </span>
-                            </p>
+    //                         <p class="green-text">
+    //                             Type: <span class="text-yellow">
+    //                                 ${series.Type}
+    //                             </span>
+    //                         </p>
                             
 
-                            <p class="green-text">
-                                Year: <span class="text-yellow">
-                                    ${series.Year}
-                                </span>
-                            </p>
+    //                         <p class="green-text">
+    //                             Year: <span class="text-yellow">
+    //                                 ${series.Year}
+    //                             </span>
+    //                         </p>
 
-                            <a href="#" class="waves-effect green btn-small" onclick="movieClicked('${movie.imdbID}')">More Info</a>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
+    //                         <a href="#" class="waves-effect green btn-small" onclick="movieClicked('${movie.imdbID}')">More Info</a>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         `;
+    //     });
 
-        this.search.innerHTML = searchOutput;
-    }
+    //     this.search.innerHTML = searchOutput;
+    // }
 }

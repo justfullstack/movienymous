@@ -36,6 +36,11 @@ body {
 }
 
 /*==navigation===============================*/
+.header-logo{ 
+        text-align: right;
+    }
+
+    
 .navigation {
     display: flex;
     justify-content: center;
@@ -170,6 +175,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-right: 20px;
+    margin: 1rem;
 }
 
 .search-box input {
@@ -177,6 +183,7 @@ body {
     border: none;
     outline: none;
     color: #ffbb00;
+    width: 100%;
 }
 
 .search-box input::placeholder {
@@ -594,6 +601,26 @@ footer .logo {
         height: 500px;
     }
 }
+
+
+
+@media(max-width:480px) {
+    form{
+        width: 100%;
+    }
+}
+
+
+
+
+
+@media(max-width:320px) {
+    nav > .header-logo{
+        font-size: 1.2rem;
+        text-align: right;
+    }
+}
+
 
 /*==movie-page=============================*/
 .rating {

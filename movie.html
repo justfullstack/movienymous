@@ -33,37 +33,81 @@
         <span id="progress-value"></span>
     </div>
     <!--==Navigation===================================-->
-    <nav class="navigation">
-        <!--menu-btn--------------->
-        <input type="checkbox" class="menu-btn" id="menu-btn">
-        <label for="menu-btn" class="menu-icon">
-            <span class="nav-icon"></span>
-        </label>
-        <!--logo------------------->
-        <a href="index.html" class="logo">
-            Movies<span>.hd</span>
-        </a>
-        <!--menu------------------->
-        <ul class="menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Genre</a></li>
-            <li><a href="#">TV Shows</a></li>
-            <li><a href="#">Movies</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <!--Search-box------------->
-        <form action="" class="search-box">
-            <!--input-->
-            <input type="text" name="search" placeholder="Search Movie" class="search-input" required/>
-            <!--btn-->
-            <button type="submit">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
-    </nav>
+    <nav class="navigation navbar  ">
+            <!--menu-btn--------------->
+            
+            <input type="checkbox" class="menu-btn" id="menu-btn">
+            <label for="menu-btn" class="menu-icon">
+                <span class="nav-icon"></span>
+            </label>
+
+            <!--logo------------------->
+            <a href="index.html" class="logo  header-logo text-left" >
+                Movienymous<span>.hd</span>
+            </a>
+
+            <!--menu------------------->
+            <ul class=" menu ">
+                <li>
+                    <a href="#">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Genre
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        TV Shows
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Movies
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Contact
+                    </a>
+                </li>
+            </ul>
+
+
+            <!--Search-box------------->
+            <!-- <form action="" class="search search-box " id="searchForm"> -->
+                <!--input-->
+                <!-- <input 
+                    type="text" 
+                    name="search-movie" 
+                    placeholder="Search Movie..." 
+                    class="search-input"   
+                    list="search__suggestions"   
+                    required/> -->
+
+                <!--btn-->
+<!--                 <button type="submit">
+                    <i class="fas fa-search"></i>
+                </button> -->
+            <!-- </form> -->
+
+            <!----     Suggestions Datalist     --------->
+            <datalist id="search__suggestions" >
+                <option value="Deadpool 2"></option> 
+                <option value="No Time to Die"></option> 
+            </datalist>
+
+        </nav>
     <!--nav-end-->
+
     <!--==Movie-Banner=========================================-->
-    <section class="movie-banner">
+    <section class="movie-banner movie-info">
         <!--==img==================================-->
         <div class="m-banner-img">
             <img alt="" src="Movie-Data/Pirates-of-the-Caribbean-Salazar&#39;s-Revenge/cover.jpg">
@@ -100,10 +144,10 @@
                         <a href="#">Horror</a>,<a href="#">Mistery</a>,<a href="#">Thriller</a>
                     </div>
                     <!--trailer-btn---->
-                    <a href="https://www.youtube.com/watch?v=ZgQkEf3dQ08" class="watch-btn">
+                    <!-- <a href="https://www.youtube.com/watch?v=ZgQkEf3dQ08" class="watch-btn">
                         Watch Trailer
                         <i class="fas fa-play fa-fw mx-2"></i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <!--play-btn******************************--->

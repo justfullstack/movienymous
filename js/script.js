@@ -7,52 +7,51 @@ console.log("Script JS Loaded!");
 
 
 // init api
-const omdb = new OMDB();
+const api = new OMDB();
 
 // init UI
 const ui = new UI();
 
+// variable declarations
+const searchForm = document.querySelector('#searchForm'); 
+const movieInfo = document.querySelector('.movie-info');
+
+// event listeners: search
+searchForm.addEventListener("submit", (e) =>{
+    let searchInput = e.target.value;
+
+    if (searchInput === ''){
+        return;
+    }
+
+    // get results
+    let results = api.getMovies(searchInput);
+
+    // display results
+    ui.showSeries(results.series);
+    ui.showMovies(results.movies);
+})
+
+// search live
+searchForm.addEventListener("keyup", (e) =>{
+    let searchInput = e.target.value;
+
+    if (searchInput === ''){
+        return;
+    }
+
+    // get results
+    let results = api.getMovies(searchInput);
+
+    // display results
+    ui.showSeries(results.series);
+    ui.showMovies(results.movies);
+})
+
+ 
 
 
-
-const searchMovie = (e) => {
-
-    e.preventDefault();
-
-    // get user input
-    const inputText = document.querySelector('nav-search').value;
-
-    // ake a call to api 
-    omdb.searchIMDB(inputText).then((results) => {
-        ui.showSearch(results);
-    }).catch(err => {
-        alert(err);
-    });
-
-}
-
-
-
-// search movies
-document.querySelector('#searchForm').addEventListener('submit', searchMovie);
-
-// get Movies function 
-const getMovies = () => {
-
-    // make request to API
-    omdb.getMovies().then((results) => {
-        ui.showmovies(results.movies)
-    }).catch((err) => {
-
-    });
-}
-
-// using omdb API
-document.addEventListener('DOMContentLoaded', getMovies);
-
-
-
-// on more info click
+// movie info
 const movieClicked = (ID) => {
     sessionStorage.setItem('movieID', ID);
     location.assign('./movie.html') // redirect
@@ -62,13 +61,36 @@ const movieClicked = (ID) => {
 };
 
 
-
-const movieInfo = () => {
+const getMovieInfo = () => {
 
     let id = sessionStorage.getItem('movieID');
 
     //make a call to omdb api
-    omdb.getMovieInfo(id).then((results) => {
+    api.getMovieInfo(id)
+    .then((results) => {
         ui.showInfo(results);
-    }).catch(err => alert(err));
+    })
+    .catch(err => alert(err));
 };
+
+
+if (movieInfo){
+    movieInfo.addEventListener("DOMContentLoaded", getMovieInfo);
+}
+
+
+
+
+// init 
+const init = () => {
+
+    // get results
+    let results = api.getMovies("2022");
+
+    // display results
+    ui.showSeries(results.series);
+    ui.showMovies(results.movies);
+    } 
+
+
+init();

@@ -1,0 +1,30 @@
+{
+  "name": "Movienymous",
+  "version": "1.0.0",
+  "description": "A movie & series encyclopedia",
+  "default": "index.html",
+  "scripts": {
+ "start": "parcel index.html",
+    "build": "parcel build index.html --dist-dir ./dist"  
+  }, 
+
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.1",
+    "sass": "^1.56.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justfullstack/movienymous.git"
+  },
+  "keywords": [
+    "css",
+    "mobile-first",
+    "frontend"
+  ],
+  "author": "Chege, CJN.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justfullstack/movienymous/issues"
+  },
+  "homepage": "https://github.com/justfullstack/movienymous#readme"
+}
